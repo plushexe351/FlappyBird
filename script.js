@@ -6,8 +6,8 @@ bird.src = 'images/bird.png'; // Replace with the path to your bird image
 
 var birdX = canvas.width / 2 - 30; // Adjusted for centering horizontally
 var birdY = canvas.height / 2 - 22.5; // Adjusted for centering vertically
-var birdWidth = 60;
-var birdHeight = 45;
+var birdWidth = 40 * 1.1;
+var birdHeight = 30 * 1.1;
 var gravity = 0.5;
 var jump = 8.5;
 var velocity = 0;
