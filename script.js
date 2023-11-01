@@ -4,6 +4,9 @@ var ctx = canvas.getContext('2d');
 var bird = new Image();
 bird.src = 'images/bird.png';
 
+var tilt = 0; // initial tilt angle
+var tiltIncrement = -0.3; // how much to tilt by
+
 var birdX = canvas.width / 2 - 30; // Adjusted for centering horizontally
 var birdY = canvas.height / 2 - 22.5; // Adjusted for centering vertically
 var birdWidth = 40 * 1.1;
@@ -36,6 +39,7 @@ document.addEventListener('keydown', function (event) {
             gameStarted = true;
         } else {
             velocity = -jump;
+            tilt = 0.5;
         }
     }
 });
@@ -47,6 +51,7 @@ document.addEventListener('click', () => {
         gameStarted = true;
     } else {
         velocity = -jump;
+        tilt = 0.5;
     }
 })
 
@@ -71,12 +76,13 @@ function resizeCanvas() {
     birdY = canvas.height / 2 - 22.5; // Adjusted for centering vertically during window resize
 
 
+
 }
 
 window.addEventListener('resize', function () {
     resizeCanvas();
-    draw();
     reset();
+    draw();
 
 
 });
@@ -121,7 +127,16 @@ function generateObstacle() {
 }
 
 function drawBird() {
-    ctx.drawImage(bird, birdX, birdY, birdWidth, birdHeight);
+    ctx.save(); // save the current context state
+    ctx.translate(birdX + birdWidth / 2, birdY + birdHeight / 2); // translate to the center of the bird
+    ctx.rotate(tilt); // rotate the context
+    ctx.drawImage(bird, -birdWidth / 2, -birdHeight / 2, birdWidth, birdHeight); // draw the bird with the tilt
+    ctx.restore(); // restore the context to its original state
+
+    // decrease tilt gradually
+    if (tilt > 0) {
+        tilt += tiltIncrement;
+    }
 }
 
 
