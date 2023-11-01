@@ -2,7 +2,7 @@ var canvas = document.getElementById('gameCanvas');
 var ctx = canvas.getContext('2d');
 
 var bird = new Image();
-bird.src = 'images/bird.png'; // Replace with the path to your bird image
+bird.src = 'images/bird.png';
 
 var birdX = canvas.width / 2 - 30; // Adjusted for centering horizontally
 var birdY = canvas.height / 2 - 22.5; // Adjusted for centering vertically
@@ -20,9 +20,9 @@ var gap = 150;
 var obstacleSpeed = 2;
 
 var pipeTop = new Image();
-pipeTop.src = 'images/pipe_top.png'; // Replace with the path to your pipe top image
+pipeTop.src = 'images/pipe_top.png';
 var pipeBottom = new Image();
-pipeBottom.src = 'images/pipe_bottom.png'; // Replace with the path to your pipe bottom image
+pipeBottom.src = 'images/pipe_bottom.png';
 
 var groundHeight = 30; // Adjust ground height as needed
 
@@ -162,7 +162,6 @@ function draw() {
         ctx.fillText("Tap or Spacebar to start", canvas.width / 2 - 150, 40);
     }
 
-    // Draw ground
     ctx.fillStyle = "#8B4513";
     ctx.fillRect(0, canvas.height - groundHeight, canvas.width, groundHeight);
 
